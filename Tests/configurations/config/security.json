@@ -1,0 +1,15 @@
+{
+  "role": {
+    "ROLE_ADMIN": ["ROLE_USER"],
+    "ROLE_USER": true
+  },
+  "provider": [
+    "Gephart\\Security\\Provider\\StaticProvider"
+  ],
+  "users": {
+    "admin": {
+      "password": "admin.123",
+      "roles": ["ROLE_ADMIN"]
+    }
+  }
+}
