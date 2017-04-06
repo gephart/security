@@ -1,8 +1,8 @@
 <?php
 
-namespace Gephart\Security\Provider;
+namespace Gephart\Security\Authenticator;
 
-interface ProviderInterface
+interface AuthenticatorInterface
 {
 
     public function getUser();

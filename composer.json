@@ -1,7 +1,7 @@
 {
   "name": "gephart/security",
   "type": "library",
-  "description": "Gephart Security",
+  "description": "Gephart Security Component",
   "keywords": [],
   "homepage": "https://github.com/gephart/security",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "php": ">=7.0",
     "gephart/annotation": "0.2.*",
     "gephart/configuration": "0.2.*",
-    "gephart/dependency-injection": "0.2.*"
+    "gephart/dependency-injection": "0.2.*",
+    "gephart/sessions": "0.3.*"
   },
   "autoload": {
     "psr-4": { "Gephart\\Security\\": "src/" },

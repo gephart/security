@@ -25,16 +25,22 @@ class SecurityTest extends \PHPUnit\Framework\TestCase
         /** @var \Gephart\Security\SecurityReader $security_reader */
         $security_reader = $this->container->get(\Gephart\Security\SecurityReader::class);
 
-        /** @var \Gephart\Security\Configuration\SecurityConfiguration $security_configuration */
-        $security_configuration = $this->container->get(\Gephart\Security\Configuration\SecurityConfiguration::class);
-
-        $provider_name = $security_configuration->get("provider")[0];
-        $provider = $this->container->get($provider_name);
+        /** @var \Gephart\Security\Authenticator\Authenticator $authenticator */
+        $authenticator = $this->container->get(\Gephart\Security\Authenticator\Authenticator::class);
 
         $muse_have_role = $security_reader->getMustHaveRole(TestController::class, "roleUserAction");
-        $user = $provider->getUser("admin");
+        $this->assertEquals($muse_have_role, "ROLE_USER");
 
-        var_dump($user);
+        $test = false;
+        try {
+            $authenticator->authorise("admin", "admin.123");
+
+            if ($authenticator->isGranted($muse_have_role)) {
+                $test = true;
+            }
+        } catch (Exception $exception) {}
+
+        $this->assertTrue($test);
     }
 
 }
