@@ -22,7 +22,11 @@ class SecurityConfiguration
 
     public function get(string $key)
     {
-        return $this->security_configuration[$key];
+        if (isset($this->security_configuration[$key])) {
+            return $this->security_configuration[$key];
+        }
+
+        return false;
     }
 
 }
