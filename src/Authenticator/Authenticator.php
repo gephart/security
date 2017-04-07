@@ -20,6 +20,11 @@ class Authenticator implements AuthenticatorInterface
      */
     private $container;
 
+    /**
+     * @var ProviderInterface
+     */
+    private $provider;
+
     public function __construct(SecurityConfiguration $security_configuration, Container $container)
     {
         $this->security_configuration = $security_configuration;
@@ -50,11 +55,26 @@ class Authenticator implements AuthenticatorInterface
 
             try {
                 $provider->authorise($user, $password);
+                $this->provider = $provider;
                 return true;
             } catch (\Exception $exception) {
                 throw $exception;
             }
         }
+    }
+
+    public function unauthorise()
+    {
+        $providers = $this->security_configuration->get("provider");
+
+        foreach ($providers as $provider_class => $provider_settings) {
+            $provider = $this->container->get($provider_class);
+            if ($provider->unauthorise()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function isGranted(string $role): bool

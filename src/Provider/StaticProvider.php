@@ -52,10 +52,14 @@ class StaticProvider implements ProviderInterface
 
         $this->setUser($user);
     }
+
+    public function unauthorise()
+    {
+        $this->sessions->set("user", false);
+    }
     
     public function getUser()
     {
-
         return $this->sessions->get("user");
     }
 
