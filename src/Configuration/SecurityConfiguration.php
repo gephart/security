@@ -4,11 +4,22 @@ namespace Gephart\Security\Configuration;
 
 use Gephart\Configuration\Configuration;
 
+/**
+ * Security configuration
+ *
+ * @package Gephart\Security\Configuration
+ * @author Michal Katuščák <michal@katuscak.cz>
+ * @since 0.3
+ */
 class SecurityConfiguration
 {
 
     private $security_configuration;
 
+    /**
+     * @param Configuration $configuration
+     * @throws \Exception
+     */
     public function __construct(Configuration $configuration)
     {
         $security_configuration = $configuration->get("security");
@@ -20,6 +31,10 @@ class SecurityConfiguration
         $this->security_configuration = $security_configuration;
     }
 
+    /**
+     * @param string $key
+     * @return bool
+     */
     public function get(string $key)
     {
         if (isset($this->security_configuration[$key])) {

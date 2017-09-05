@@ -7,6 +7,13 @@ use Gephart\Security\Configuration\SecurityConfiguration;
 use Gephart\Security\Entity\UserInterface;
 use Gephart\Security\Provider\ProviderInterface;
 
+/**
+ * Basic authentificator
+ *
+ * @package Gephart\Security\Authenticator
+ * @author Michal Katuščák <michal@katuscak.cz>
+ * @since 0.3
+ */
 class Authenticator implements AuthenticatorInterface
 {
 
@@ -25,12 +32,19 @@ class Authenticator implements AuthenticatorInterface
      */
     private $provider;
 
+    /**
+     * @param SecurityConfiguration $security_configuration
+     * @param Container $container
+     */
     public function __construct(SecurityConfiguration $security_configuration, Container $container)
     {
         $this->security_configuration = $security_configuration;
         $this->container = $container;
     }
 
+    /**
+     * @return bool|UserInterface
+     */
     public function getUser()
     {
         $providers = $this->security_configuration->get("provider");
@@ -45,6 +59,12 @@ class Authenticator implements AuthenticatorInterface
         return false;
     }
 
+    /**
+     * @param string $user
+     * @param string $password
+     * @return bool
+     * @throws \Exception
+     */
     public function authorise(string $user, string $password)
     {
         $providers = $this->security_configuration->get("provider");
@@ -63,6 +83,9 @@ class Authenticator implements AuthenticatorInterface
         }
     }
 
+    /**
+     * @return bool
+     */
     public function unauthorise()
     {
         $providers = $this->security_configuration->get("provider");
@@ -77,6 +100,10 @@ class Authenticator implements AuthenticatorInterface
         return false;
     }
 
+    /**
+     * @param string $role
+     * @return bool
+     */
     public function isGranted(string $role): bool
     {
         /** @var UserInterface $user */
@@ -101,6 +128,10 @@ class Authenticator implements AuthenticatorInterface
         return false;
     }
 
+    /**
+     * @param string $role
+     * @return array
+     */
     private function getCascadeRoles(string $role): array
     {
         $roles = [$role];
