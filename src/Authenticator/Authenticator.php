@@ -114,13 +114,11 @@ class Authenticator implements AuthenticatorInterface
         }
 
         $user_roles = $user->getRoles();
-        $cascade_roles = $this->getCascadeRoles($role);
 
         foreach ($user_roles as $user_role) {
             $user_cascade_roles = $this->getCascadeRoles($user_role);
-            $intersect = array_intersect($user_cascade_roles, $cascade_roles);
 
-            if (count($intersect) > 0) {
+            if (in_array($role, $user_cascade_roles)) {
                 return true;
             }
         }
