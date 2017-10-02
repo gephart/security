@@ -98,5 +98,4 @@ class StaticProvider implements ProviderInterface
     {
         $this->sessions->set("user", $user);
     }
-
 }

@@ -43,5 +43,4 @@ class SecurityConfiguration
 
         return false;
     }
-
 }

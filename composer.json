@@ -18,6 +18,9 @@
     "gephart/dependency-injection": "0.4.*",
     "gephart/sessions": "0.4.*"
   },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*"
+  },
   "autoload": {
     "psr-4": { "Gephart\\Security\\": "src/" },
     "exclude-from-classmap": [

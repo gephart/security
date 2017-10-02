@@ -13,5 +13,4 @@ interface UserInterface
 
     public function getRoles(): array;
     public function setRoles(array $roles);
-
 }

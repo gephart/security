@@ -45,5 +45,4 @@ class SecurityReader
         }
         return $security_controller;
     }
-
 }
