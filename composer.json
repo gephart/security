@@ -15,7 +15,7 @@
     "php": ">=7.1",
     "gephart/annotation": "0.4.*",
     "gephart/configuration": "0.4.*",
-    "gephart/dependency-injection": "0.4.*",
+    "gephart/dependency-injection": "dev-master",
     "gephart/sessions": "0.4.*"
   },
   "require-dev": {
