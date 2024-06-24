@@ -74,9 +74,10 @@ class Authenticator implements AuthenticatorInterface
             $provider = $this->container->get($provider_class);
 
             try {
-                $provider->authorise($user, $password);
-                $this->provider = $provider;
-                return true;
+                if ($provider->authorise($user, $password)) {
+                    $this->provider = $provider;
+                    return true;
+                }
             } catch (\Exception $exception) {
                 throw $exception;
             }
