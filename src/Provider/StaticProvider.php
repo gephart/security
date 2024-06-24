@@ -47,8 +47,11 @@ class StaticProvider implements ProviderInterface
         $users = $this->security_configuration->get("users");
         $provider = $this->security_configuration->get("provider")[get_class($this)];
 
-        if (empty($users) || empty($users[$username])) {
+        if ((empty($users) || empty($users[$username]))
+            && count($this->security_configuration->get("provider")) === 0) {
             throw new \Exception("User '$username' not found.");
+        } elseif (empty($users) || empty($users[$username])) {
+            return false;
         }
 
         if (!empty($provider["salt"])) {
@@ -59,13 +62,13 @@ class StaticProvider implements ProviderInterface
             throw new \Exception("Password is bad.");
         }
 
-        $user_data = $users[$username];
+        $userData = $users[$username];
 
         /** @var UserInterface $user */
         $user = new $provider["entity"]();
         $user
-            ->setPassword($user_data["password"])
-            ->setRoles($user_data["roles"])
+            ->setPassword($userData["password"])
+            ->setRoles($userData["roles"])
             ->setUsername($username);
 
         $this->setUser($user);
