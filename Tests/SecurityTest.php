@@ -9,7 +9,7 @@ class SecurityTest extends \PHPUnit\Framework\TestCase
     
     private $container;
     
-    public function setUp()
+    public function setUp(): void
     {
         $container = new \Gephart\DependencyInjection\Container();
         

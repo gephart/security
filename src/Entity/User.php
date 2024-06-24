@@ -23,7 +23,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @var array
+     * @var ?array
      */
     private $roles;
 
@@ -66,18 +66,18 @@ class User implements UserInterface
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    public function getRoles(): array
+    public function getRoles(): ?array
     {
         return $this->roles;
     }
 
     /**
-     * @param array $roles
+     * @param ?array $roles
      * @return $this
      */
-    public function setRoles(array $roles)
+    public function setRoles(?array $roles)
     {
         $this->roles = $roles;
 

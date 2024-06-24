@@ -11,6 +11,6 @@ interface UserInterface
     public function getPassword(): string;
     public function setPassword(string $password);
 
-    public function getRoles(): array;
-    public function setRoles(array $roles);
+    public function getRoles(): ?array;
+    public function setRoles(?array $roles);
 }

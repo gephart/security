@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . "/../vendor/autoload.php";
+include_once __DIR__ . "/../../vendor/autoload.php";
 
 class SecurityConfigurationTest extends \PHPUnit\Framework\TestCase
 {
@@ -9,7 +9,7 @@ class SecurityConfigurationTest extends \PHPUnit\Framework\TestCase
      */
     private $container;
     
-    public function setUp()
+    public function setUp(): void
     {
         $container = new \Gephart\DependencyInjection\Container();
         
